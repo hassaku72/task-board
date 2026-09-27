@@ -6,16 +6,16 @@
 
 task-board — タスク管理ボードアプリケーション。
 
-<!-- 技術スタック・ディレクトリ構成・起動/テスト方法が決まったら追記する -->
+- 技術スタック: React 19 + Vite(JavaScript)、Lint は oxlint
+- `src/App.jsx` — タスクの追加・完了切り替え・削除を行うメインコンポーネント(状態は `useState` で保持、永続化なし)
+- `src/App.css` / `src/index.css` — スタイル
 
 ## 開発コマンド
 
-<!-- 例:
 - 依存関係のインストール: `npm install`
 - 開発サーバー起動: `npm run dev`
-- テスト: `npm test`
+- 本番ビルド: `npm run build`
 - Lint: `npm run lint`
--->
 
 ## Git 運用ルール
 
