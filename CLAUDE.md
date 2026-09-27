@@ -7,7 +7,7 @@
 task-board — タスク管理ボードアプリケーション。
 
 - 技術スタック: React 19 + Vite(JavaScript)、Lint は oxlint
-- `src/App.jsx` — タスクの追加・完了切り替え・削除を行うメインコンポーネント(状態は `useState` で保持、永続化なし)
+- `src/App.jsx` — タスクの追加・完了切り替え・削除を行うメインコンポーネント(状態は `useState` で保持し、localStorage のキー `task-board.tasks` に保存)
 - `src/App.css` / `src/index.css` — スタイル
 
 ## 開発コマンド
