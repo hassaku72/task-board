@@ -17,6 +17,12 @@ task-board — タスク管理ボードアプリケーション。
 - 本番ビルド: `npm run build`
 - Lint: `npm run lint`
 
+## デプロイ
+
+- GitHub Pages で公開: https://hassaku72.github.io/task-board/
+- `main` へのプッシュで `.github/workflows/deploy.yml` が lint・ビルドして自動デプロイする。
+- サブパスで配信されるため `vite.config.js` の `base` は `/task-board/`。リポジトリ名を変えたらここも合わせる。
+
 ## Git 運用ルール
 
 **コードを変更したら、そのたびにコミットして GitHub にプッシュすること。**
