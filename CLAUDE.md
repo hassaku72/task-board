@@ -6,9 +6,35 @@
 
 task-board — タスク管理ボードアプリケーション。
 
-- 技術スタック: React 19 + Vite(JavaScript)、Lint は oxlint
+- `src/main.jsx` — エントリーポイント。`App` を `StrictMode` でマウントする
 - `src/App.jsx` — タスクの追加・完了切り替え・削除を行うメインコンポーネント(状態は `useState` で保持し、localStorage のキー `task-board.tasks` に保存)
-- `src/App.css` / `src/index.css` — スタイル
+- `src/App.css` — `App` のスタイル / `src/index.css` — 全体共通のスタイル
+
+## 技術スタック
+
+| 用途 | 採用技術 |
+| --- | --- |
+| UI ライブラリ | React 19(関数コンポーネント + Hooks) |
+| ビルドツール / 開発サーバー | Vite 8(`@vitejs/plugin-react`) |
+| 言語 | JavaScript(JSX)。TypeScript は未導入 |
+| スタイル | プレーン CSS(CSS Modules・CSS-in-JS・UI ライブラリは未使用) |
+| 状態管理 | React の `useState` のみ(外部ライブラリなし) |
+| データ永続化 | ブラウザの localStorage |
+| Lint | oxlint(`.oxlintrc.json`) |
+| CI / ホスティング | GitHub Actions → GitHub Pages |
+
+新しいライブラリを追加するときは、事前にユーザーに確認する。
+
+## コンポーネントの命名規約
+
+- **コンポーネント名**: PascalCase(例: `App`, `TaskItem`)。関数宣言 `function TaskItem() {}` で定義し、`export default` する。
+- **ファイル**: 1ファイル1コンポーネント。ファイル名はコンポーネント名と同じ PascalCase + `.jsx`(例: `TaskItem.jsx`)。配置は `src/` 直下(数が増えたら `src/components/` に分ける)。
+- **スタイル**: コンポーネントと同名の CSS ファイルを用意し、コンポーネント側で `import './TaskItem.css'` する。
+- **className**: 小文字の kebab-case(例: `task-list`, `add-form`)。状態は追加のクラスで表す(例: `task done`)。
+- **イベントハンドラ**: 動詞 + 名詞の camelCase(例: `addTask`, `toggleTask`, `deleteTask`)。props で渡すときは `onXxx`(例: `onToggle`, `onDelete`)。
+- **state**: 名詞の camelCase で、setter は `setXxx`(例: `tasks` / `setTasks`)。真偽値は `done` のように状態を表す名前にする。
+- **モジュール定数**: UPPER_SNAKE_CASE(例: `STORAGE_KEY`)。
+- **UI テキスト**: 画面上の文言やアクセシビリティ用ラベル(`aria-label`)は日本語で書く。
 
 ## 開発コマンド
 
@@ -17,9 +43,11 @@ task-board — タスク管理ボードアプリケーション。
 - 本番ビルド: `npm run build`
 - Lint: `npm run lint`
 
-## デプロイ
+## デプロイ先
 
-- GitHub Pages で公開: https://hassaku72.github.io/task-board/
+https://hassaku72.github.io/task-board/
+
+- GitHub Pages で公開している。
 - `main` へのプッシュで `.github/workflows/deploy.yml` が lint・ビルドして自動デプロイする。
 - サブパスで配信されるため `vite.config.js` の `base` は `/task-board/`。リポジトリ名を変えたらここも合わせる。
 
